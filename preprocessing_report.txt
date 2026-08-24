@@ -1,0 +1,9 @@
+--- PREPROCESSING REPORT ---
+Original shape: (100000, 42)
+Duplicates found: 0
+No missing values found.
+Converted transaction_date and expiration_date to datetime objects.
+Standardized column names.
+Potential ML Target Variables found: ['Discount Prediction Target: discount_pct / markdown_applied', 'Waste/Donation Prediction Target: was_spoiled / waste_pct / units_wasted']
+Final shape: (100000, 42)
+Saved processed dataset to c:/Users/DELL/Desktop/shelfGuard/data/processed/perishable_goods_cleaned.csv
