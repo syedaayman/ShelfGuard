@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartShelf AI - Near Expiry</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>SmartShelf AI</h2>
+        <ul class="sidebar-menu">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="near-expiry.html" class="active">Near Expiry</a></li>
+            <li><a href="expired.html">Expired Products</a></li>
+            <li><a href="donations.html">Donations</a></li>
+            <li><a href="scan.html">Scan Product</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="header">
+            <h1>Near Expiry Monitoring</h1>
+        </div>
+
+        <div id="error-msg" class="error-msg"></div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Expiring within 7 days</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Expiry Date</th>
+                        <th>Remaining Time</th>
+                        <th>Stock</th>
+                        <th>Discount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="near-expiry-tbody">
+                    <!-- Data injected via JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/near-expiry.js"></script>
+</body>
+</html>

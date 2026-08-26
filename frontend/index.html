@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartShelf AI - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>SmartShelf AI</h2>
+        <ul class="sidebar-menu">
+            <li><a href="index.html" class="active">Dashboard</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="near-expiry.html">Near Expiry</a></li>
+            <li><a href="expired.html">Expired Products</a></li>
+            <li><a href="donations.html">Donations</a></li>
+            <li><a href="scan.html">Scan Product</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="header">
+            <h1>Dashboard Overview</h1>
+        </div>
+
+        <div id="error-msg" class="error-msg"></div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title">Total Products</div>
+                <div class="stat-value" id="stat-products">...</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Total Stock</div>
+                <div class="stat-value" id="stat-stock">...</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Products Near Expiry</div>
+                <div class="stat-value" id="stat-near">...</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Critical / Donations</div>
+                <div class="stat-value" id="stat-critical">...</div>
+            </div>
+            <div class="stat-card" style="border-left: 4px solid #dc3545;">
+                <div class="stat-title">Expired Products</div>
+                <div class="stat-value" id="stat-expired">...</div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Products Requiring Attention (Near Expiry)</h2>
+                <a href="near-expiry.html" class="btn btn-primary" style="text-decoration: none;">View All</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Stock</th>
+                        <th>Expiry Date</th>
+                        <th>Remaining Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="near-expiry-tbody">
+                    <!-- Data injected via JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

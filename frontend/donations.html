@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartShelf AI - Donations</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>SmartShelf AI</h2>
+        <ul class="sidebar-menu">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="near-expiry.html">Near Expiry</a></li>
+            <li><a href="expired.html">Expired Products</a></li>
+            <li><a href="donations.html" class="active">Donations</a></li>
+            <li><a href="scan.html">Scan Product</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="header">
+            <h1>Donation Workflow</h1>
+        </div>
+
+        <div id="error-msg" class="error-msg"></div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <h2>Products Reaching Critical Expiry</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Details</th>
+                        <th>Remaining Time</th>
+                        <th>Stock Quantity</th>
+                        <th>Donation Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="donations-tbody">
+                    <!-- Data injected via JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/donations.js"></script>
+</body>
+</html>

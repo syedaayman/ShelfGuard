@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartShelf AI - Inventory</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>SmartShelf AI</h2>
+        <ul class="sidebar-menu">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="inventory.html" class="active">Inventory</a></li>
+            <li><a href="near-expiry.html">Near Expiry</a></li>
+            <li><a href="expired.html">Expired Products</a></li>
+            <li><a href="donations.html">Donations</a></li>
+            <li><a href="scan.html">Scan Product</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <div class="header">
+            <h1>Complete Inventory</h1>
+        </div>
+
+        <div id="error-msg" class="error-msg"></div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <input type="text" id="search-bar" class="search-bar" placeholder="Search by product name or category...">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Batch ID</th>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Stock</th>
+                        <th>Base Price</th>
+                        <th>Discount</th>
+                        <th>Demand Score</th>
+                        <th>Expiry Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="inventory-tbody">
+                    <!-- Data injected via JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/inventory.js"></script>
+</body>
+</html>
