@@ -1,10 +1,13 @@
 from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, Field
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
+import argparse
 import sqlite3
 import os
 import database
+from pricing_model import predict_discount
 
 app = FastAPI(title="SmartShelf AI Backend")
 
@@ -72,6 +75,33 @@ def attach_expiry_status(rows: list) -> list:
     for row in rows:
         row["status"] = calculate_product_status(row["expiry_date"], row.get("status", ""))
     return rows
+
+
+class DiscountRequest(BaseModel):
+    days_to_expiry: float = Field(ge=0)
+    stock_level: float = Field(ge=0)
+    remaining_shelf_life_pct: float = Field(ge=0, le=100)
+    supplier_score: float = Field(ge=6, le=10)
+    is_promoted: int = Field(ge=0, le=1)
+
+
+@app.post("/api/predict-discount")
+async def predict_product_discount(request: DiscountRequest):
+    try:
+        discount_fraction = predict_discount(
+            days_to_expiry=request.days_to_expiry,
+            stock_level=request.stock_level,
+            remaining_shelf_life_pct=request.remaining_shelf_life_pct,
+            supplier_score=request.supplier_score,
+            is_promoted=request.is_promoted,
+        )
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+
+    return {
+        "discount_fraction": discount_fraction,
+        "discount_percent": discount_fraction * 100,
+    }
 
 
 @app.get("/api/stats")
@@ -160,3 +190,27 @@ async def get_expired():
 frontend_path = os.path.join(os.path.dirname(__file__), "frontend")
 os.makedirs(frontend_path, exist_ok=True)
 app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
+def main():
+    parser = argparse.ArgumentParser(
+        description="Predict a discount for a perishable product."
+    )
+    parser.add_argument("--days-to-expiry", type=float, required=True)
+    parser.add_argument("--stock-level", type=float, required=True)
+    parser.add_argument("--remaining-shelf-life", type=float, required=True)
+    parser.add_argument("--supplier-score", type=float, required=True)
+    parser.add_argument("--promoted", type=int, choices=(0, 1), required=True)
+    args = parser.parse_args()
+
+    discount_fraction = predict_discount(
+        days_to_expiry=args.days_to_expiry,
+        stock_level=args.stock_level,
+        remaining_shelf_life_pct=args.remaining_shelf_life,
+        supplier_score=args.supplier_score,
+        is_promoted=args.promoted,
+    )
+
+    print(f"Recommended discount: {discount_fraction * 100:.2f}%")
+
+
+if __name__ == "__main__":
+	main()
