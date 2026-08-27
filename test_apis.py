@@ -23,7 +23,7 @@ async def test_endpoints():
     expired = await get_expired()
     print("Expired count:", len(expired))
     if expired:
-        print("First Expired Item:", expired[0]['product_name'], "status:", expired[0]['expiry_status'])
+        print("First Expired Item:", expired[0]['product_name'], "status:", expired[0]['status'])
 
 if __name__ == "__main__":
     asyncio.run(test_endpoints())

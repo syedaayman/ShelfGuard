@@ -4,19 +4,19 @@ ShelfGuard is a perishable-goods management project with a machine-learning mode
 
 ## Machine Learning
 
-The final model is a tuned LightGBM regressor. The target column is `discount_pct`, stored as a fraction: `0.36` represents a `36%` discount.
+The final model is a tuned XGBoost regressor. The target column is `discount_pct`, stored as a fraction: `0.36` represents a `36%` discount.
 
 Evaluation results on the fixed 20% test split:
 
-- MAE: `0.0951` (about 9.51 percentage points)
+- MAE: `0.0952` (about 9.52 percentage points)
 - RMSE: `0.1343`
-- R2: `0.4390`
+- R2: `0.4392`
 
 Repeated 5-fold cross-validation with 3 repeats gave:
 
-- MAE: `0.0950 +/- 0.0005` (fraction)
+- MAE: `0.0951 +/- 0.0005` (fraction)
 - RMSE: `0.1342 +/- 0.0006`
-- R2: `0.4410 +/- 0.0072`
+- R2: `0.4412 +/- 0.0073`
 
 The repeated cross-validation results show that performance is stable across
 different data splits. Since this is a regression model, accuracy is reported
@@ -32,7 +32,7 @@ Create or activate the project virtual environment, then install the dependencie
 
 ## Train the Model
 
-Open `train_model.ipynb` and run all cells. The notebook loads `perishable_goods_management.csv`, engineers the model features, tunes LightGBM, evaluates the model, and saves `pricing_model.pkl`.
+Open `train_model.ipynb` and run all cells. The notebook loads `perishable_goods_management.csv`, engineers the model features, tunes XGBoost, evaluates the model, and saves `pricing_model.pkl`.
 
 `Dynamic_Pricing.ipynb` is intended for exploratory analysis and model comparison. Use `train_model.ipynb` as the authoritative training notebook.
 
@@ -67,7 +67,7 @@ Input rules:
 ## Project Files
 
 - `Dynamic_Pricing.ipynb`: exploratory analysis and model comparison
-- `train_model.ipynb`: final LightGBM training and evaluation
+- `train_model.ipynb`: final XGBoost training and evaluation
 - `pricing_model.pkl`: saved trained model
 - `pricing_model.py`: validated prediction function
 - `app.py`: command-line prediction interface
